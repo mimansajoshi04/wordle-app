@@ -39,22 +39,39 @@ export default function GameBoard({word}) {
 
     let flag = true;
 
-    for(let i=0;i<5;i++){
+    for (let i = 0; i < 5; i++) {
       let elem = document.getElementById(`${rownum}/${i}`);
+      let keyElem = document.getElementById(elem.value);
       elem.disabled = true;
-      if(letters[i] == (elem.value)){
-        elem.style.backgroundColor = "green";
-      }else{
-        let value = dict[elem.value]||0;
-        flag=false;
-        if(value>0){
-          dict[elem.value] = value-1;
-          elem.style.backgroundColor = "#CC7722";
-        }else{
-          elem.style.backgroundColor = "grey";
+    
+      if (letters[i] === elem.value) {
+        elem.style.backgroundColor = "green"; // Green
+        if (keyElem && getComputedStyle(keyElem).backgroundColor !== "rgb(155, 218, 54)") {
+          keyElem.style.backgroundColor = "#9bda36"; // Green
+        }
+      } else {
+        let value = dict[elem.value] || 0;
+        flag = false;
+    
+        if (value > 0) {
+          dict[elem.value] = value - 1;
+          elem.style.backgroundColor = "#CC7722"; // Yellow
+          if (keyElem && getComputedStyle(keyElem).backgroundColor !== "rgb(155, 218, 54)") {
+            keyElem.style.backgroundColor = "#CC7722"; // Yellow
+          }
+        } else {
+          elem.style.backgroundColor = "grey"; // Grey
+          if (
+            keyElem &&
+            getComputedStyle(keyElem).backgroundColor !== "rgb(155, 218, 54)" &&
+            getComputedStyle(keyElem).backgroundColor !== "rgb(204, 119, 34)"
+          ) {
+            keyElem.style.backgroundColor = "grey"; // Only set if not already green or yellow
+          }
         }
       }
     }
+    
 
     if(flag){
       setGameStatus('You won!');
