@@ -42,7 +42,8 @@ const QWERTYKeyboard = ({ onKeyPress }) => {
             {QWERTY_KEYS.map((row, rowIndex) => (
                 <div key={rowIndex} className="keyboard-row">
                 {row.map((key) => (
-                    <button key={key} onClick={() => onKeyPress(key)} id={`${key}`}>
+                    // <button key={key} onClick={() => onKeyPress(key)} id={`${key}`}>
+                    <button key={key} id={`${key}`}>
                     {key}
                     </button>
                 ))}

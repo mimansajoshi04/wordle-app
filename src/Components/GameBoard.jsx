@@ -161,9 +161,6 @@ export default function GameBoard({word}) {
   };
   
   useEffect(() => {
-
-    if(rownum==0)
-      console.log(word);
     const start = document.getElementById(`${rownum}/0`);
     if (start) {
       start.disabled = false;
